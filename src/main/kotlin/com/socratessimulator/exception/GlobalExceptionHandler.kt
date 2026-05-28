@@ -1,6 +1,7 @@
 package com.socratessimulator.exception
 
 import com.socratessimulator.model.ResponseLOBehandeld
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.validation.FieldError
@@ -32,7 +33,7 @@ class GlobalExceptionHandler {
             fouten = errors
         )
 
-        return ResponseEntity.badRequest().body(response)
+        return ResponseEntity.unprocessableEntity().body(response)
     }
 
     @ExceptionHandler(HttpMessageNotReadableException::class)
@@ -46,6 +47,20 @@ class GlobalExceptionHandler {
             details = ex.mostSpecificCause.message
         )
 
-        return ResponseEntity.badRequest().body(response)
+        return ResponseEntity.unprocessableEntity().body(response)
+    }
+
+    @ExceptionHandler(Exception::class)
+    fun handleUnexpectedException(ex: Exception): ResponseEntity<ResponseLOBehandeld> {
+        val response = ResponseLOBehandeld(
+            berichtId = null,
+            responseId = UUID.randomUUID().toString(),
+            timestamp = OffsetDateTime.now().toString(),
+            foutcode = "INTERNAL_SERVER_ERROR",
+            foutomschrijving = "An unexpected error occurred",
+            details = ex.message
+        )
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response)
     }
 }

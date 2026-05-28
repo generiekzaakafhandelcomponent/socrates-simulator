@@ -36,7 +36,7 @@ data class ZaakLOBehandeld(
     )
     @get:JsonProperty("url") val url: String? = null,
 
-    @get:Pattern(regexp = "^(\\{?([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\\}?)$")
+    @field:Pattern(regexp = "^(\\{?([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\\}?)$")
     @Schema(
         example = "null",
         description = "De unieke identificatie van de ZAAK binnen de organisatie die verantwoordelijk is voor de behandeling van de ZAAK."
