@@ -73,13 +73,13 @@ class LOBehandeldControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
         )
-            .andExpect(status().isBadRequest)
+            .andExpect(status().isUnprocessableEntity)
             .andExpect(jsonPath("$.foutcode").value("MALFORMED_JSON"))
             .andExpect(jsonPath("$.details", containsString("loBehandeld")))
     }
 
     @Test
-    fun `test LOBehandeld endpoint - validation error`() {
+    fun `test LOBehandeld endpoint - validation error - BSN too short`() {
         val jsonRequest = """
             {
                 "identificatie": "Z-123",
@@ -116,7 +116,51 @@ class LOBehandeldControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
         )
-            .andExpect(status().isBadRequest)
+            .andExpect(status().isUnprocessableEntity)
+            .andExpect(jsonPath("$.foutcode").value("VALIDATION_ERROR"))
+            .andExpect(jsonPath("$.fouten").isArray)
+            .andExpect(jsonPath("$.fouten", hasItem(containsString("burgerservicenummer"))))
+    }
+
+    @Test
+    fun `test LOBehandeld endpoint - validation error - BSN fails elfproef`() {
+        val jsonRequest = """
+            {
+                "identificatie": "Z-123",
+                "loBehandeld": {
+                    "aanvraagdatum": "2023-01-01",
+                    "aanvraagid": "550e8400-e29b-41d4-a716-446655440000",
+                    "codeOntvangendeGemeente": "0307",
+                    "huishouding": {
+                        "aanvrager": {
+                            "burgerservicenummer": "123456789",
+                            "geboortedatum": "1980-01-01",
+                            "geslachtsaanduiding": "1",
+                            "geslachtsnaamstam": "Jansen",
+                            "voorlettersAanschrijving": "J.",
+                            "naamgebruik": "1",
+                            "codeBrpGegevensGeheim": "0",
+                            "nationaliteit": ["0"]
+                        },
+                        "leefsituatie": "3"
+                    },
+                    "ingangBijstandsuitkering": {
+                        "datumMeldingBijGemeente": "2023-01-01",
+                        "datumIngang": "2023-01-01"
+                    },
+                    "redenAanvraagLevensonderhoud": {
+                        "onvoldoendeInkomen": "1"
+                    }
+                }
+            }
+        """.trimIndent()
+
+        mockMvc.perform(
+            post("/api/v1/LOBehandeld")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonRequest)
+        )
+            .andExpect(status().isUnprocessableEntity)
             .andExpect(jsonPath("$.foutcode").value("VALIDATION_ERROR"))
             .andExpect(jsonPath("$.fouten").isArray)
             .andExpect(jsonPath("$.fouten", hasItem(containsString("burgerservicenummer"))))
