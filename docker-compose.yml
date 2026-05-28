@@ -1,0 +1,9 @@
+services:
+  socrates-simulator:
+    build: .
+    container_name: socrates-simulator
+    ports:
+      - "5030:5030"
+    environment:
+      - SERVER_PORT=5030
+    restart: unless-stopped
