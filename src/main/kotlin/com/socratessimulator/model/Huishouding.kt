@@ -19,7 +19,7 @@ data class Huishouding(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("aanvrager", required = true) val aanvrager: Persoon,
 
-    @get:Pattern(regexp = "^-?[0-9]+((;|,|\\\\.)[0-9]{2}|)$")
+    @field:Pattern(regexp = "^-?[0-9]+((;|,|\\\\.)[0-9]{2}|)$")
     @Schema(
         example = "null",
         description = "Totaal van het in aanmerking te nemen vermogen van leden gezamenlijke huishouding plus de vermogens van de ten laste komende kinderen die op zelfde adres wonen."

@@ -11,11 +11,11 @@ import jakarta.validation.constraints.Pattern
  */
 data class Vestiging(
 
-    @get:Pattern(regexp = "^[0-9]{8}$")
+    @field:Pattern(regexp = "^[0-9]{8}$")
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("kvkNummer", required = true) val kvkNummer: String,
 
-    @get:Pattern(regexp = "^[0-9]{12}$")
+    @field:Pattern(regexp = "^[0-9]{12}$")
     @Schema(
         example = "null",
         description = "Landelijk uniek identificerend administratienummer van een VESTIGING zoals toegewezen door de Kamer van Koophandel (KvK).Bron: RSGB3.0"

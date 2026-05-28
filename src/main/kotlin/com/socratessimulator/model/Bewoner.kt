@@ -44,26 +44,26 @@ data class Bewoner(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("codeBrpGegevensGeheim", required = true) val codeBrpGegevensGeheim: Geheim,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,/\\s]{1,40}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,/\\s]{1,40}$")
     @Schema(example = "null", description = "De stam van de geslachtsnaam. Deze is ontdaan van voorvoegsels en titels.")
     @get:JsonProperty("geslachtsnaamstam") val geslachtsnaamstam: String? = null,
 
-    @get:Pattern(regexp = "^[\\p{L}. ]*$")
+    @field:Pattern(regexp = "^[\\p{L}. ]*$")
     @Schema(example = "null", description = "De voorletters waarmee een persoonaangeschreven wil worden.Bron: RSGB 3.0")
     @get:JsonProperty("voorlettersAanschrijving") val voorlettersAanschrijving: String? = null,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,10}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,10}$")
     @Schema(example = "null", description = "Voorvoegsel behorende bij de stam van de geslachtsnaam.Bron: RSGB 3.0")
     @get:JsonProperty("voorvoegsel") val voorvoegsel: String? = null,
 
-    @get:Pattern(regexp = "^[1-9][0-9]{9}$")
+    @field:Pattern(regexp = "^[1-9][0-9]{9}$")
     @Schema(
         example = "null",
         description = "Het administratienummer van een PERSOON binnen de gemeentelijke basisadministratie (GBA), zoals bedoeld als in artikel 50 van de Wet GBA.Norminstantie: GBA"
     )
     @get:JsonProperty("aNummer") val aNummer: String? = null,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,200}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,200}$")
     @Schema(example = "null", description = "De samenvoeging van alle exemplaren van voornaam van een persoon.")
     @get:JsonProperty("voornamen") val voornamen: String? = null
 )

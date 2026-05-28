@@ -44,7 +44,7 @@ data class Kind(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("geslachtsaanduiding", required = true) val geslachtsaanduiding: Geslachtsaanduiding,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,/\\s]{1,40}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,/\\s]{1,40}$")
     @Schema(
         example = "null",
         required = true,
@@ -52,7 +52,7 @@ data class Kind(
     )
     @get:JsonProperty("geslachtsnaamstam", required = true) val geslachtsnaamstam: String,
 
-    @get:Pattern(regexp = "^[\\p{L}. ]*$")
+    @field:Pattern(regexp = "^[\\p{L}. ]*$")
     @Schema(
         example = "null",
         required = true,
@@ -69,26 +69,26 @@ data class Kind(
     @get:JsonProperty("codeBrpGegevensGeheim", required = true) val codeBrpGegevensGeheim: Geheim,
 
     @field:Valid
-    @get:Size(min = 1, max = 2)
+    @field:Size(min = 1, max = 2)
     @Schema(example = "null", required = true, description = "Codes die de Nationaliteiten van een PERSOON aangeeft.")
     @get:JsonProperty("nationaliteit", required = true) val nationaliteit: kotlin.collections.List<CodeNationaliteit>,
 
-    @get:Pattern(regexp = "^[1-9][0-9]{9}$")
+    @field:Pattern(regexp = "^[1-9][0-9]{9}$")
     @Schema(
         example = "null",
         description = "Het administratienummer van een PERSOON binnen de gemeentelijke basisadministratie (GBA), zoals bedoeld als in artikel 50 van de Wet GBA.Norminstantie: GBA"
     )
     @get:JsonProperty("aNummer") val aNummer: String? = null,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,200}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,200}$")
     @Schema(example = "null", description = "De samenvoeging van alle exemplaren van voornaam van een persoon.")
     @get:JsonProperty("voornamen") val voornamen: String? = null,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,10}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,10}$")
     @Schema(example = "null", description = "Voorvoegsel behorende bij de stam van de geslachtsnaam.")
     @get:JsonProperty("voorvoegsel") val voorvoegsel: String? = null,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,51}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,51}$")
     @Schema(example = "null", description = "")
     @get:JsonProperty("geslachtsnaamPartner") val geslachtsnaamPartner: String? = null
 )

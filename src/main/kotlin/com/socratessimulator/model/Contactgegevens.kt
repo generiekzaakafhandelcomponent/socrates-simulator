@@ -23,8 +23,8 @@ data class Contactgegevens(
     @Schema(example = "null", description = "")
     @get:JsonProperty("codeTypeTelefoonnummer") val codeTypeTelefoonnummer: ContactgegevensCodeTypeTelefoonnummer? = null,
 
-    @get:Pattern(regexp = "^[A-Za-z0-9_-]+([.][A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.][A-Za-z0-9_-]+)*[.][A-Za-z0-9]+$")
-    @get:Size(max = 70)
+    @field:Pattern(regexp = "^[A-Za-z0-9_-]+([.][A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.][A-Za-z0-9_-]+)*[.][A-Za-z0-9]+$")
+    @field:Size(max = 70)
     @Schema(example = "null", description = "Het adres waaronder een PERSOON per elektronische post bereikbaar is.")
     @get:JsonProperty("eMailadres") val eMailadres: String? = null,
 
@@ -36,15 +36,15 @@ data class Contactgegevens(
     @Schema(example = "null", description = "")
     @get:JsonProperty("indicatieVoorkeurTelefoonnummer") val indicatieVoorkeurTelefoonnummer: JaNee? = null,
 
-    @get:Min(0)
-    @get:Max(2147483647)
+    @field:Min(0)
+    @field:Max(2147483647)
     @Schema(
         example = "null",
         description = "Het telefoon landnummer waaronder de PERSOON bereikbaar is.Norminstantie: ITU"
     )
     @get:JsonProperty("telefoonLandnummer") val telefoonLandnummer: kotlin.Int? = null,
 
-    @get:Pattern(regexp = "^0[1-9][0-9]{8}$")
+    @field:Pattern(regexp = "^0[1-9][0-9]{8}$")
     @Schema(example = "null", description = "Het telefoonnummer waaronder een PERSOON bereikbaar is.")
     @get:JsonProperty("telefoonnummer") val telefoonnummer: String? = null
 )

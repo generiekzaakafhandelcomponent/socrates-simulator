@@ -28,18 +28,18 @@ data class UitbetalingUitkering(
     )
     @get:JsonProperty("aanDerdeReden") val aanDerdeReden: String? = null,
 
-    @get:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
+    @field:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
     @Schema(example = "null", description = "")
     @get:JsonProperty("bankrekening") val bankrekening: String? = null,
 
-    @get:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
+    @field:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
     @Schema(
         example = "null",
         description = "IBAN nummer van derde. Een derde is een bewindvoerder of een gemachtigde zoals een curator, een organisatie voor maatschappelijke opvang of een famililid."
     )
     @get:JsonProperty("bankrekeningDerde") val bankrekeningDerde: String? = null,
 
-    @get:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
+    @field:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
     @Schema(example = "null", description = "IBAN nummer van partner aanvrager")
     @get:JsonProperty("bankrekeningPartner") val bankrekeningPartner: String? = null,
 

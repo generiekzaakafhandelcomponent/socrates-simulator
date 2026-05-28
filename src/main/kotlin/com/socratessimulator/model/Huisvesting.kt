@@ -30,8 +30,8 @@ data class Huisvesting(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("indicatieZelfstandigeWoonruimte", required = true) val indicatieZelfstandigeWoonruimte: JaNee,
 
-    @get:Min(0)
-    @get:Max(2147483647)
+    @field:Min(0)
+    @field:Max(2147483647)
     @Schema(
         example = "null",
         description = "Het aantal dagen per week dat men in een instelling of opvang verblijft. Dit attribuut moet zijn ingevuld als de CodeRelatieBewonerTotHuisvesting aangeeft dat men in een instelling zit."

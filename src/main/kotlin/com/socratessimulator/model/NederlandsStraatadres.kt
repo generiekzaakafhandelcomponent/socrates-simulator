@@ -26,8 +26,8 @@ data class NederlandsStraatadres(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("soortAdres", required = true) val soortAdres: SoortAdres,
 
-    @get:Min(0)
-    @get:Max(2147483647)
+    @field:Min(0)
+    @field:Max(2147483647)
     @Schema(
         example = "null",
         required = true,
@@ -35,7 +35,7 @@ data class NederlandsStraatadres(
     )
     @get:JsonProperty("huisnummer", required = true) val huisnummer: kotlin.Int,
 
-    @get:Pattern(regexp = "^[1-9][0-9]{3} ?[a-zA-Z]{2}$")
+    @field:Pattern(regexp = "^[1-9][0-9]{3} ?[a-zA-Z]{2}$")
     @Schema(
         example = "null",
         required = true,
@@ -43,7 +43,7 @@ data class NederlandsStraatadres(
     )
     @get:JsonProperty("postcode", required = true) val postcode: String,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,/\\s]{1,24}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,/\\s]{1,24}$")
     @Schema(
         example = "null",
         required = true,
@@ -51,7 +51,7 @@ data class NederlandsStraatadres(
     )
     @get:JsonProperty("straatnaam", required = true) val straatnaam: String,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,40}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,40}$")
     @Schema(
         example = "null",
         required = true,
@@ -65,21 +65,21 @@ data class NederlandsStraatadres(
     )
     @get:JsonProperty("aanduidingBijHuisnummer") val aanduidingBijHuisnummer: String? = null,
 
-    @get:Pattern(regexp = "^[A-Za-z]$")
+    @field:Pattern(regexp = "^[A-Za-z]$")
     @Schema(
         example = "null",
         description = "Een alfabetisch teken achter het huisnummer zoals dit door het gemeentebestuur is toegekend.Bron: SGR 16.0Norminstantie: GBA"
     )
     @get:JsonProperty("huisletter") val huisletter: String? = null,
 
-    @get:Size(min = 1, max = 4)
+    @field:Size(min = 1, max = 4)
     @Schema(
         example = "null",
         description = "De huisnummertoevoeging zoals deze door de gemeente aan het object is toegekend.Bron: SGR 16.0Norminstantie: NEN 5825:2002 - HuisnummertoevoegingOpmerking:Bij de feitelijke toekenning van identificatiegegevens aan een object in aanvulling op het huisnummer kan door gemeenten gebruik gemaakt worden van de elementen  huisletter  en  huisnummertoevoeging . In het element huisnummertoevoeging van deze norm worden deze door de gemeente toegekende elementen opgenomen.Bron: SGR 16.0"
     )
     @get:JsonProperty("huisnummertoevoeging") val huisnummertoevoeging: String? = null,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,35}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,35}$")
     @Schema(
         example = "null",
         description = "Een nadere aanduiding bij de STRAATNAAM en - indien aanwezig - het HUISNUMMER of bij Postbus en POSTBUSNUMMER, dan wel Antwoordnummer en ANTWOORDNUMMER.Bron: SGR 16.0, gebaseerd op NEN 5825:2002 - LocatieomschrijvingOpmerkingen:Gebruikmaking van de LOCATIEOMSCHRIJVING kan om verschillende redenen wenselijk dan wel noodzakelijk zijn. Het HUISNUMMER kan ontbreken of men wil niet-uiterlijk waarneembare kenmerken, zoals toevoegingen voor nadere differentiatie achter de voordeur, vermelden.Voorbeelden van toevoegingen die in de LOCATIEOMSCHRIJVING opgenomen kunnen worden, zijn:poste restantewoonboot Mariannewoonwagen Bambiflat Orionkamer 412appartement V 113kelder, zolder, souterrain, enz.1e verdieping, 2e verdieping, enz.aanduiding ten behoeve van horizontale verdeling, zoals:linksmidden dwarsrechtsvoormidden evenwijdigachtervoor linksmidden linksachter linksvoor middenmidden middenachter midden2. De waarde poste restante voor een LOCATIEOMSCHRIJVING is niet toegestaan in een DOMICILIE-ADRES.3. De toelichting van LOCATIEBESCHRIJVING volgens BRP is een geheel of gedeeltelijke omschrijving van de ligging van een object. Als locatiebeschrijving is niet toegestaan een  postbus (postbox) en een poste restante.Bron: SGR 16.0"

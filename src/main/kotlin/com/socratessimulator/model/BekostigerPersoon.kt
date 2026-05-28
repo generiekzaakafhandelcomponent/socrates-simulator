@@ -35,7 +35,7 @@ data class BekostigerPersoon(
     )
     @get:JsonProperty("geboortedatum", required = true) val geboortedatum: java.time.LocalDate,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1, 40}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,40}$")
     @Schema(example = "null", required = true, description = "De feitelijke naam van de persoon.")
     @get:JsonProperty("naam", required = true) val naam: String
 )

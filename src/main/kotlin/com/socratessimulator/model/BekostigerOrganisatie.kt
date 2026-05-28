@@ -17,7 +17,7 @@ data class BekostigerOrganisatie(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("soortBekostiger", required = true) val soortBekostiger: SoortBekostiger,
 
-    @get:Pattern(regexp = "^\\d{8,9}L\\d{2}$")
+    @field:Pattern(regexp = "^\\d{8,9}L\\d{2}$")
     @Schema(
         example = "null",
         required = true,
@@ -25,7 +25,7 @@ data class BekostigerOrganisatie(
     )
     @get:JsonProperty("loonheffingsnummer", required = true) val loonheffingsnummer: String,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1, 40}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,40}$")
     @Schema(
         example = "null",
         required = true,

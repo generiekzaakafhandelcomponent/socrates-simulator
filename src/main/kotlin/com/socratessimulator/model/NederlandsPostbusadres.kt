@@ -21,8 +21,8 @@ data class NederlandsPostbusadres(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("soortAdres", required = true) val soortAdres: SoortAdres,
 
-    @get:Min(0)
-    @get:Max(2147483647)
+    @field:Min(0)
+    @field:Max(2147483647)
     @Schema(
         example = "null",
         required = true,
@@ -30,7 +30,7 @@ data class NederlandsPostbusadres(
     )
     @get:JsonProperty("postbusnummer", required = true) val postbusnummer: kotlin.Int,
 
-    @get:Pattern(regexp = "^[1-9][0-9]{3} ?[a-zA-Z]{2}$")
+    @field:Pattern(regexp = "^[1-9][0-9]{3} ?[a-zA-Z]{2}$")
     @Schema(
         example = "null",
         required = true,
@@ -38,7 +38,7 @@ data class NederlandsPostbusadres(
     )
     @get:JsonProperty("postcode", required = true) val postcode: String,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,40}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,40}$")
     @Schema(
         example = "null",
         required = true,
@@ -46,7 +46,7 @@ data class NederlandsPostbusadres(
     )
     @get:JsonProperty("woonplaatsnaam", required = true) val woonplaatsnaam: String,
 
-    @get:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,35}$")
+    @field:Pattern(regexp = "^[\\p{L}\\p{M}\\d\\-'\\.\\s]{1,35}$")
     @Schema(
         example = "null",
         description = "Een nadere aanduiding bij de STRAATNAAM en - indien aanwezig - het HUISNUMMER of bij Postbus en POSTBUSNUMMER, dan wel Antwoordnummer en ANTWOORDNUMMER.Bron: SGR 16.0, gebaseerd op NEN 5825:2002 - LocatieomschrijvingOpmerkingen:Gebruikmaking van de LOCATIEOMSCHRIJVING kan om verschillende redenen wenselijk dan wel noodzakelijk zijn. Het HUISNUMMER kan ontbreken of men wil niet-uiterlijk waarneembare kenmerken, zoals toevoegingen voor nadere differentiatie achter de voordeur, vermelden.Voorbeelden van toevoegingen die in de LOCATIEOMSCHRIJVING opgenomen kunnen worden, zijn:poste restantewoonboot Mariannewoonwagen Bambiflat Orionkamer 412appartement V 113kelder, zolder, souterrain, enz.1e verdieping, 2e verdieping, enz.aanduiding ten behoeve van horizontale verdeling, zoals:linksmidden dwarsrechtsvoormidden evenwijdigachtervoor linksmidden linksachter linksvoor middenmidden middenachter midden2. De waarde poste restante voor een LOCATIEOMSCHRIJVING is niet toegestaan in een DOMICILIE-ADRES.3. De toelichting van LOCATIEBESCHRIJVING volgens BRP is een geheel of gedeeltelijke omschrijving van de ligging van een object. Als locatiebeschrijving is niet toegestaan een  postbus (postbox) en een poste restante.Bron: SGR 16.0"

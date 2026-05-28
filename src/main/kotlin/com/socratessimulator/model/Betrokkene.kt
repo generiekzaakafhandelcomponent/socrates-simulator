@@ -24,7 +24,7 @@ data class Betrokkene(
     @get:JsonProperty("omschrijving") val omschrijving: String? = null,
 
     @field:Valid
-    @get:Size(min = 1)
+    @field:Size(min = 1)
     @Schema(example = "null", description = "")
     @get:JsonProperty("rol") val rol: List<Rol>? = null
 )

@@ -27,7 +27,7 @@ data class SecundairInkomstencomponent(
     )
     @get:JsonProperty("boekingsdatum") val boekingsdatum: java.time.LocalDate? = null,
 
-    @get:Pattern(regexp = "^-?[0-9]+((;|,|\\\\.)[0-9]{2}|)$")
+    @field:Pattern(regexp = "^-?[0-9]+((;|,|\\\\.)[0-9]{2}|)$")
     @Schema(
         example = "null",
         description = "Het geldbedrag waarop de boeking betrekking heeft geldig voor de periode in dit inkomstencomponent."
