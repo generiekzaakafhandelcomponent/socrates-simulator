@@ -49,7 +49,7 @@ data class PrimairInkomstencomponent(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("secundairInkomstencomponent") val secundairInkomstencomponent: kotlin.collections.List<SecundairInkomstencomponent>? = null,
+    @get:JsonProperty("secundairInkomstencomponent") val secundairInkomstencomponent: List<SecundairInkomstencomponent>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")

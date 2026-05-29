@@ -71,7 +71,7 @@ data class Kind(
     @field:Valid
     @field:Size(min = 1, max = 2)
     @Schema(example = "null", required = true, description = "Codes die de Nationaliteiten van een PERSOON aangeeft.")
-    @get:JsonProperty("nationaliteit", required = true) val nationaliteit: kotlin.collections.List<CodeNationaliteit>,
+    @get:JsonProperty("nationaliteit", required = true) val nationaliteit: List<CodeNationaliteit>,
 
     @field:Pattern(regexp = "^[1-9][0-9]{9}$")
     @Schema(

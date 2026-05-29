@@ -13,7 +13,7 @@ data class Profiel(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("inkomstenverhoudingen") val inkomstenverhoudingen: kotlin.collections.List<Inkomstenverhouding>? = null,
+    @get:JsonProperty("inkomstenverhoudingen") val inkomstenverhoudingen: List<Inkomstenverhouding>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")

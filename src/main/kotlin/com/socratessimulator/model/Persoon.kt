@@ -64,12 +64,12 @@ data class Persoon(
     @field:Valid
     @field:Size(min=1,max=2)
     @Schema(example = "null", required = true, description = "Codes die de Nationaliteiten van een PERSOON aangeeft.")
-    @get:JsonProperty("nationaliteit", required = true) val nationaliteit: kotlin.collections.List<CodeNationaliteit>,
+    @get:JsonProperty("nationaliteit", required = true) val nationaliteit: List<CodeNationaliteit>,
 
     @field:Valid
     @field:Size(min=1)
     @Schema(example = "null", description = "")
-    @get:JsonProperty("adreshouding") val adreshouding: kotlin.collections.List<Adreshouding>? = null,
+    @get:JsonProperty("adreshouding") val adreshouding: List<Adreshouding>? = null,
 
     @field:Pattern(regexp="^[1-9][0-9]{9}$")
     @Schema(example = "null", description = "Het administratienummer van een PERSOON binnen de gemeentelijke basisadministratie (GBA), zoals bedoeld als in artikel 50 van de Wet GBA.Norminstantie: GBA")
@@ -85,11 +85,11 @@ data class Persoon(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("kinderen") val kinderen: kotlin.collections.List<OuderKind>? = null,
+    @get:JsonProperty("kinderen") val kinderen: List<OuderKind>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("medebewoners") val medebewoners: kotlin.collections.List<Medebewoner>? = null,
+    @get:JsonProperty("medebewoners") val medebewoners: List<Medebewoner>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
