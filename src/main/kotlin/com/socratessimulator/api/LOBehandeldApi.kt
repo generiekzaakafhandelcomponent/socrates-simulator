@@ -42,7 +42,7 @@ interface LOBehandeldApi {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/api/v{version}/lobehandeld"],
+        value = ["/api/v{version}/LOBehandeld"],
         produces = ["application/json"],
         consumes = ["application/json-patch+json", "application/json", "text/json", "application/*+json"]
     )
