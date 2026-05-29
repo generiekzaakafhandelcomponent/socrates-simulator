@@ -53,7 +53,7 @@ class LOBehandeldControllerTest {
     @Test
     fun `test LOBehandeld endpoint - valid request`() {
         mockMvc.perform(
-            post("/api/v1/LOBehandeld")
+            post("/api/v1/lobehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(buildRequest("123456782"))
         )
@@ -65,7 +65,7 @@ class LOBehandeldControllerTest {
     @Test
     fun `test BSN 999999400 returns HTTP 400`() {
         mockMvc.perform(
-            post("/api/v1/LOBehandeld")
+            post("/api/v1/lobehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(buildRequest("999999400"))
         )
@@ -77,7 +77,7 @@ class LOBehandeldControllerTest {
     @Test
     fun `test BSN 999999424 returns HTTP 422`() {
         mockMvc.perform(
-            post("/api/v1/LOBehandeld")
+            post("/api/v1/lobehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(buildRequest("999999424"))
         )
@@ -89,7 +89,7 @@ class LOBehandeldControllerTest {
     @Test
     fun `test BSN 999999503 returns HTTP 500`() {
         mockMvc.perform(
-            post("/api/v1/LOBehandeld")
+            post("/api/v1/lobehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(buildRequest("999999503"))
         )
@@ -107,7 +107,7 @@ class LOBehandeldControllerTest {
         """.trimIndent()
 
         mockMvc.perform(
-            post("/api/v1/LOBehandeld")
+            post("/api/v1/lobehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
         )
@@ -150,7 +150,7 @@ class LOBehandeldControllerTest {
         """.trimIndent()
 
         mockMvc.perform(
-            post("/api/v1/LOBehandeld")
+            post("/api/v1/lobehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
         )
@@ -194,7 +194,7 @@ class LOBehandeldControllerTest {
         """.trimIndent()
 
         mockMvc.perform(
-            post("/api/v1/LOBehandeld")
+            post("/api/v1/lobehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
         )

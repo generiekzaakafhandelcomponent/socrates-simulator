@@ -42,7 +42,7 @@ interface LOBehandeldApi {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/api/v{version}/LOBehandeld"],
+        value = ["/api/v{version}/lobehandeld"],
         produces = ["application/json"],
         consumes = ["application/json-patch+json", "application/json", "text/json", "application/*+json"]
     )
@@ -50,7 +50,7 @@ interface LOBehandeldApi {
         @Parameter(
             description = "",
             required = true
-        ) @PathVariable("version") version: kotlin.String,
+        ) @PathVariable("version") version: String,
         @Parameter(description = "") @Valid @RequestBody(required = false) zaakLOBehandeld: ZaakLOBehandeld?
     ): ResponseEntity<ResponseLOBehandeld> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
