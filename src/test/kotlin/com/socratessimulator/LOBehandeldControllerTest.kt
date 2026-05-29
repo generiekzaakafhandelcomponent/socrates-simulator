@@ -19,45 +19,83 @@ class LOBehandeldControllerTest {
     @Autowired
     lateinit var mockMvc: MockMvc
 
-    @Test
-    fun `test LOBehandeld endpoint - valid request`() {
-        val jsonRequest = """
-            {
-                "identificatie": "Z-123",
-                "loBehandeld": {
-                    "aanvraagdatum": "2023-01-01",
-                    "aanvraagid": "550e8400-e29b-41d4-a716-446655440000",
-                    "codeOntvangendeGemeente": "0307",
-                    "huishouding": {
-                        "aanvrager": {
-                            "burgerservicenummer": "123456782",
-                            "geboortedatum": "1980-01-01",
-                            "geslachtsaanduiding": "1",
-                            "geslachtsnaamstam": "Jansen",
-                            "voorlettersAanschrijving": "J.",
-                            "naamgebruik": "1",
-                            "codeBrpGegevensGeheim": "0",
-                            "nationaliteit": ["0"]
-                        },
-                        "leefsituatie": "3"
+    private fun buildRequest(bsn: String) = """
+        {
+            "identificatie": "Z-123",
+            "loBehandeld": {
+                "aanvraagdatum": "2023-01-01",
+                "aanvraagid": "550e8400-e29b-41d4-a716-446655440000",
+                "codeOntvangendeGemeente": "0307",
+                "huishouding": {
+                    "aanvrager": {
+                        "burgerservicenummer": "$bsn",
+                        "geboortedatum": "1980-01-01",
+                        "geslachtsaanduiding": "1",
+                        "geslachtsnaamstam": "Jansen",
+                        "voorlettersAanschrijving": "J.",
+                        "naamgebruik": "1",
+                        "codeBrpGegevensGeheim": "0",
+                        "nationaliteit": ["0"]
                     },
-                    "ingangBijstandsuitkering": {
-                        "datumMeldingBijGemeente": "2023-01-01",
-                        "datumIngang": "2023-01-01"
-                    },
-                    "redenAanvraagLevensonderhoud": {
-                        "onvoldoendeInkomen": "1"
-                    }
+                    "leefsituatie": "3"
+                },
+                "ingangBijstandsuitkering": {
+                    "datumMeldingBijGemeente": "2023-01-01",
+                    "datumIngang": "2023-01-01"
+                },
+                "redenAanvraagLevensonderhoud": {
+                    "onvoldoendeInkomen": "1"
                 }
             }
-        """.trimIndent()
+        }
+    """.trimIndent()
 
+    @Test
+    fun `test LOBehandeld endpoint - valid request`() {
         mockMvc.perform(
             post("/api/v1/LOBehandeld")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonRequest)
+                .content(buildRequest("123456782"))
         )
-            .andExpect(status().isAccepted)
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.berichtId").value("Z-123"))
+            .andExpect(jsonPath("$.responseId").isNotEmpty)
+    }
+
+    @Test
+    fun `test BSN 999999400 returns HTTP 400`() {
+        mockMvc.perform(
+            post("/api/v1/LOBehandeld")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(buildRequest("999999400"))
+        )
+            .andExpect(status().isBadRequest)
+            .andExpect(jsonPath("$.foutcode").value("TEST_400"))
+            .andExpect(jsonPath("$.berichtId").value("Z-123"))
+    }
+
+    @Test
+    fun `test BSN 999999424 returns HTTP 422`() {
+        mockMvc.perform(
+            post("/api/v1/LOBehandeld")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(buildRequest("999999424"))
+        )
+            .andExpect(status().isUnprocessableEntity)
+            .andExpect(jsonPath("$.foutcode").value("TEST_422"))
+            .andExpect(jsonPath("$.berichtId").value("Z-123"))
+    }
+
+    @Test
+    fun `test BSN 999999503 returns HTTP 500`() {
+        mockMvc.perform(
+            post("/api/v1/LOBehandeld")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(buildRequest("999999503"))
+        )
+            .andExpect(status().isInternalServerError)
+            .andExpect(jsonPath("$.foutcode").value("TEST_500"))
+            .andExpect(jsonPath("$.berichtId").value("Z-123"))
     }
 
     @Test
