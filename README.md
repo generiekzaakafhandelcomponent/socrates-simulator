@@ -4,6 +4,8 @@ Socrates Simulator is a Spring Boot 3 / Kotlin application that acts as a stub s
 
 > **v2 breaking changes:** request properties are now PascalCase (`Identificatie`, `LObehandeld`, `Huishouding`, …), and BRP person data (name, birth date, gender, nationality, verblijfstitel, A-nummer, geheimhouding) is no longer sent — `Persoon`, `Kind`, `Bewoner` and `BekostigerPersoon` only carry a `Burgerservicenummer`. `RedenAanvraagLevensonderhoud` is optional, `Partner.IngangsdatumRelatie` is only required when `PartnerRelatietype` is `4`, and only `application/json` is accepted. Responses are unchanged (camelCase).
 
+> **Compatibility (2.1.0):** like the real Wigo4it LO API, request property names are matched case-insensitively, so camelCase payloads from Socrates plugin (`identificatie`, `loBehandeld`, …) are accepted as well. Enum codes sent as JSON numbers (e.g. `"PartnerRelatietype": 1`) are read as their code value, not as the enum's position.
+
 ## Features
 
 - **OpenAPI-driven models**: All models and API interfaces are derived directly from the Wigo4it LO spec.
@@ -157,7 +159,7 @@ http://localhost:5030/swagger-ui.html
 ./gradlew test
 ```
 
-Covers v2 request handling (PascalCase payloads, polymorphic `Adres` / `Bekostiger` / `InkomstencomponenttypeSpecifiekeGegevens`), the `Partner` relatietype-4 rule, the BSN simulation scenarios, validation errors, and rejection of v1 camelCase payloads.
+Covers v2 request handling (PascalCase payloads, polymorphic `Adres` / `Bekostiger` / `InkomstencomponenttypeSpecifiekeGegevens`), the `Partner` relatietype-4 rule, the BSN simulation scenarios, validation errors, acceptance of camelCase property names and numeric enum codes (compatibility with the real API), and rejection of incomplete payloads.
 
 ### Manual test with curl
 
@@ -181,7 +183,7 @@ curl -X POST http://localhost:5030/api/v2/LOBehandeld \
   }'
 ```
 
-Expected: `200 OK` with `berichtId: "Z-123"`. Replace the BSN with one of the [simulation BSNs](#bsn-simulation) (`999999400`, `999999424`, `999999503`) to get the corresponding error response. A v1-style camelCase payload returns `422` with `foutcode: "MALFORMED_JSON"`.
+Expected: `200 OK` with `berichtId: "Z-123"`. Replace the BSN with one of the [simulation BSNs](#bsn-simulation) (`999999400`, `999999424`, `999999503`) to get the corresponding error response. camelCase property names are accepted as well; a payload missing required fields returns `422` with `foutcode: "MALFORMED_JSON"`.
 
 ### Swagger UI
 

@@ -215,8 +215,86 @@ class LOBehandeldControllerTest {
     }
 
     @Test
-    fun `v1 camelCase payload is rejected`() {
+    fun `incomplete camelCase payload returns malformed request`() {
         send("""{ "identificatie": "Z-123", "loBehandeld": {} }""")
+            .andExpect(status().isUnprocessableEntity)
+            .andExpect(jsonPath("$.foutcode").value("MALFORMED_JSON"))
+    }
+
+    @Test
+    fun `camelCase property names are accepted like the real API`() {
+        send(
+            """
+            {
+                "identificatie": "Z-123",
+                "loBehandeld": {
+                    "aanvraagdatum": "2023-01-01",
+                    "aanvraagid": "550e8400-e29b-41d4-a716-446655440000",
+                    "codeOntvangendeGemeente": "0307",
+                    "huishouding": {
+                        "aanvrager": {
+                            "burgerservicenummer": "123456782",
+                            "partner": { "partnerRelatietype": "1", "ingangsdatumRelatie": null },
+                            "adreshouding": [{
+                                "codeFunctieAdres": "A",
+                                "begindatum": "2023-01-01",
+                                "adres": {
+                                    "SoortAdres": "1",
+                                    "straatnaam": "Coolsingel",
+                                    "huisnummer": 40,
+                                    "postcode": "3011 AD",
+                                    "woonplaatsnaam": "Rotterdam"
+                                }
+                            }]
+                        },
+                        "medeaanvrager": null,
+                        "uitbetalingUitkering": {
+                            "bankrekening": "NL91ABNA0417164300",
+                            "rekeninghouder": "J. Jansen",
+                            "soortUitbetaling": "01"
+                        }
+                    },
+                    "ingangBijstandsuitkering": {
+                        "datumMeldingBijGemeente": "2023-01-01",
+                        "gewensteStartdatumUitkering": null
+                    },
+                    "redenAanvraagLevensonderhoud": { "onvoldoendeInkomen": "1" }
+                },
+                "Betrokkenen": []
+            }
+            """.trimIndent()
+        )
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.berichtId").value("Z-123"))
+    }
+
+    @Test
+    fun `numeric PartnerRelatietype is read as code value, not as ordinal`() {
+        // as ordinal, 3 would be read as relatietype 4, which requires IngangsdatumRelatie
+        val partner = """,
+                        "Partner": { "PartnerRelatietype": 3 }"""
+
+        send(buildRequest("123456782", aanvragerExtra = partner))
+            .andExpect(status().isOk)
+    }
+
+    @Test
+    fun `numeric PartnerRelatietype 4 requires IngangsdatumRelatie`() {
+        val partner = """,
+                        "Partner": { "PartnerRelatietype": 4 }"""
+
+        send(buildRequest("123456782", aanvragerExtra = partner))
+            .andExpect(status().isUnprocessableEntity)
+            .andExpect(jsonPath("$.foutcode").value("VALIDATION_ERROR"))
+            .andExpect(jsonPath("$.fouten", hasItem(containsString("IngangsdatumRelatie"))))
+    }
+
+    @Test
+    fun `unknown numeric PartnerRelatietype is rejected`() {
+        val partner = """,
+                        "Partner": { "PartnerRelatietype": 9 }"""
+
+        send(buildRequest("123456782", aanvragerExtra = partner))
             .andExpect(status().isUnprocessableEntity)
             .andExpect(jsonPath("$.foutcode").value("MALFORMED_JSON"))
     }
