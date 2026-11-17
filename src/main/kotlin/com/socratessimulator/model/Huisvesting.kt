@@ -22,13 +22,13 @@ data class Huisvesting(
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty(
-        "codeRelatieBewonerTotHuisvesting",
+        "CodeRelatieBewonerTotHuisvesting",
         required = true
     ) val codeRelatieBewonerTotHuisvesting: HuisvestingCodeRelatieBewonerTotHuisvesting,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieZelfstandigeWoonruimte", required = true) val indicatieZelfstandigeWoonruimte: JaNee,
+    @get:JsonProperty("IndicatieZelfstandigeWoonruimte", required = true) val indicatieZelfstandigeWoonruimte: JaNee,
 
     @field:Min(0)
     @field:Max(2147483647)
@@ -36,30 +36,30 @@ data class Huisvesting(
         example = "null",
         description = "Het aantal dagen per week dat men in een instelling of opvang verblijft. Dit attribuut moet zijn ingevuld als de CodeRelatieBewonerTotHuisvesting aangeeft dat men in een instelling zit."
     )
-    @get:JsonProperty("aantalDagenPerWeekInInstellingOfOpvang") val aantalDagenPerWeekInInstellingOfOpvang: kotlin.Int? = null,
+    @get:JsonProperty("AantalDagenPerWeekInInstellingOfOpvang") val aantalDagenPerWeekInInstellingOfOpvang: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieHuur") val indicatieHuur: IndicatieHuur? = null,
+    @get:JsonProperty("IndicatieHuur") val indicatieHuur: IndicatieHuur? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieInDetentie") val indicatieInDetentie: JaNee? = null,
+    @get:JsonProperty("IndicatieInDetentie") val indicatieInDetentie: JaNee? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieInstellingVolledigVerzorgd") val indicatieInstellingVolledigVerzorgd: JaNee? = null,
+    @get:JsonProperty("IndicatieInstellingVolledigVerzorgd") val indicatieInstellingVolledigVerzorgd: JaNee? = null,
 
     @Schema(
         example = "null",
         description = "Toelichting op de woonsituatie van de PERSOON betreffende de huisvesting.Bron: SGR 16.0"
     )
-    @get:JsonProperty("toelichtingHuisvesting") val toelichtingHuisvesting: String? = null,
+    @get:JsonProperty("ToelichtingHuisvesting") val toelichtingHuisvesting: String? = null,
 
     @Schema(
         example = "null",
         description = "Toelichting op de hoedanigheid waarin de PERSOON de woning bewoont.Norminstantie: SGR"
     )
-    @get:JsonProperty("toelichtingRelatieBewonerTotHuisvesting") val toelichtingRelatieBewonerTotHuisvesting: String? = null
+    @get:JsonProperty("ToelichtingRelatieBewonerTotHuisvesting") val toelichtingRelatieBewonerTotHuisvesting: String? = null
 )
 

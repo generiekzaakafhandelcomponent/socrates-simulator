@@ -13,10 +13,10 @@ data class Dienst(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("begindatum", required = true) val begindatum: java.time.LocalDate,
+    @get:JsonProperty("Begindatum", required = true) val begindatum: java.time.LocalDate,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("einddatum", required = true) val einddatum: java.time.LocalDate
+    @get:JsonProperty("Einddatum", required = true) val einddatum: java.time.LocalDate
 )
 

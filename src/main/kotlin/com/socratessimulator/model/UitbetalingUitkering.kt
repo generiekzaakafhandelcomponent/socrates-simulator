@@ -20,39 +20,39 @@ data class UitbetalingUitkering(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("soortUitbetaling", required = true) val soortUitbetaling: UitbetalingUitkeringSoortUitbetaling,
+    @get:JsonProperty("SoortUitbetaling", required = true) val soortUitbetaling: UitbetalingUitkeringSoortUitbetaling,
 
     @Schema(
         example = "null",
         description = "De reden waarom er aan een derde uitbetaald moet worden. Een derde is een bewindvoerder of een gemachtigde zoals een curator, een organisatie voor matschappelijke opvang of een famililid."
     )
-    @get:JsonProperty("aanDerdeReden") val aanDerdeReden: String? = null,
+    @get:JsonProperty("AanDerdeReden") val aanDerdeReden: String? = null,
 
     @field:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
     @Schema(example = "null", description = "")
-    @get:JsonProperty("bankrekening") val bankrekening: String? = null,
+    @get:JsonProperty("Bankrekening") val bankrekening: String? = null,
 
     @field:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
     @Schema(
         example = "null",
         description = "IBAN nummer van derde. Een derde is een bewindvoerder of een gemachtigde zoals een curator, een organisatie voor maatschappelijke opvang of een famililid."
     )
-    @get:JsonProperty("bankrekeningDerde") val bankrekeningDerde: String? = null,
+    @get:JsonProperty("BankrekeningDerde") val bankrekeningDerde: String? = null,
 
     @field:Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$")
     @Schema(example = "null", description = "IBAN nummer van partner aanvrager")
-    @get:JsonProperty("bankrekeningPartner") val bankrekeningPartner: String? = null,
+    @get:JsonProperty("BankrekeningPartner") val bankrekeningPartner: String? = null,
 
     @Schema(example = "null", description = "Naam rekeninghouder.")
-    @get:JsonProperty("rekeninghouder") val rekeninghouder: String? = null,
+    @get:JsonProperty("Rekeninghouder") val rekeninghouder: String? = null,
 
     @Schema(
         example = "null",
         description = "Naam rekeninghouder derde. Een derde is een bewindvoerder of een gemachtigde zoals een curator, een organisatie voor maatschappelijke opvang of een famililid."
     )
-    @get:JsonProperty("rekeninghouderDerde") val rekeninghouderDerde: String? = null,
+    @get:JsonProperty("RekeninghouderDerde") val rekeninghouderDerde: String? = null,
 
     @Schema(example = "null", description = "Naam rekeninghouder van partner aanvrager")
-    @get:JsonProperty("rekeninghouderPartner") val rekeninghouderPartner: String? = null
+    @get:JsonProperty("RekeninghouderPartner") val rekeninghouderPartner: String? = null
 )
 

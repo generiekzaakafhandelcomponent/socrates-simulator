@@ -15,18 +15,17 @@ data class Pensioen(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("soortInkomstencomponenttypeSpecifiekeGegevens", required = true) val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
+    @get:JsonProperty("SoortInkomstencomponenttypeSpecifiekeGegevens", required = true) override val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("inkomstensoortPensioen", required = true) val inkomstensoortPensioen: InkomstensoortPensioen,
+    @get:JsonProperty("InkomstensoortPensioen", required = true) val inkomstensoortPensioen: InkomstensoortPensioen,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieLoonheffingskorting") val indicatieLoonheffingskorting: JaNee? = null,
+    @get:JsonProperty("IndicatieLoonheffingskorting") val indicatieLoonheffingskorting: JaNee? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieReserveringVT") val indicatieReserveringVT: JaNee? = null
-)
-
+    @get:JsonProperty("IndicatieReserveringVT") val indicatieReserveringVT: JaNee? = null
+) : InkomstencomponenttypeSpecifiekeGegevens

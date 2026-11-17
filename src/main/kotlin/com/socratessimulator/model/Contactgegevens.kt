@@ -21,20 +21,20 @@ data class Contactgegevens(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("codeTypeTelefoonnummer") val codeTypeTelefoonnummer: ContactgegevensCodeTypeTelefoonnummer? = null,
+    @get:JsonProperty("CodeTypeTelefoonnummer") val codeTypeTelefoonnummer: ContactgegevensCodeTypeTelefoonnummer? = null,
 
     @field:Pattern(regexp = "^[A-Za-z0-9_-]+([.][A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.][A-Za-z0-9_-]+)*[.][A-Za-z0-9]+$")
     @field:Size(max = 70)
     @Schema(example = "null", description = "Het adres waaronder een PERSOON per elektronische post bereikbaar is.")
-    @get:JsonProperty("eMailadres") val eMailadres: String? = null,
+    @get:JsonProperty("EMailadres") val eMailadres: String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieGeheimTelefoonnummer") val indicatieGeheimTelefoonnummer: JaNee? = null,
+    @get:JsonProperty("IndicatieGeheimTelefoonnummer") val indicatieGeheimTelefoonnummer: JaNee? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieVoorkeurTelefoonnummer") val indicatieVoorkeurTelefoonnummer: JaNee? = null,
+    @get:JsonProperty("IndicatieVoorkeurTelefoonnummer") val indicatieVoorkeurTelefoonnummer: JaNee? = null,
 
     @field:Min(0)
     @field:Max(2147483647)
@@ -42,10 +42,10 @@ data class Contactgegevens(
         example = "null",
         description = "Het telefoon landnummer waaronder de PERSOON bereikbaar is.Norminstantie: ITU"
     )
-    @get:JsonProperty("telefoonLandnummer") val telefoonLandnummer: kotlin.Int? = null,
+    @get:JsonProperty("TelefoonLandnummer") val telefoonLandnummer: kotlin.Int? = null,
 
     @field:Pattern(regexp = "^0[1-9][0-9]{8}$")
     @Schema(example = "null", description = "Het telefoonnummer waaronder een PERSOON bereikbaar is.")
-    @get:JsonProperty("telefoonnummer") val telefoonnummer: String? = null
+    @get:JsonProperty("Telefoonnummer") val telefoonnummer: String? = null
 )
 

@@ -16,22 +16,22 @@ data class Medebewoner(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("bewoner", required = true) val bewoner: Bewoner,
+    @get:JsonProperty("Bewoner", required = true) val bewoner: Bewoner,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieKostendeler", required = true) val indicatieKostendeler: JaNee,
+    @get:JsonProperty("IndicatieKostendeler", required = true) val indicatieKostendeler: JaNee,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("relatietype", required = true) val relatietype: MedebewonerRelatietype,
+    @get:JsonProperty("Relatietype", required = true) val relatietype: MedebewonerRelatietype,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("ingangsdatumRelatie", required = true) val ingangsdatumRelatie: java.time.LocalDate,
+    @get:JsonProperty("IngangsdatumRelatie", required = true) val ingangsdatumRelatie: java.time.LocalDate,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indicatieZorgbehoefte") val indicatieZorgbehoefte: JaNee? = null
+    @get:JsonProperty("IndicatieZorgbehoefte") val indicatieZorgbehoefte: JaNee? = null
 )
 

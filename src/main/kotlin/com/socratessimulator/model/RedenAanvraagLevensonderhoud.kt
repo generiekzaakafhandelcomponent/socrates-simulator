@@ -17,26 +17,26 @@ data class RedenAanvraagLevensonderhoud(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("onvoldoendeInkomen") val onvoldoendeInkomen: RedenAanvraagLevensonderhoudOnvoldoendeInkomen? = null,
+    @get:JsonProperty("OnvoldoendeInkomen") val onvoldoendeInkomen: RedenAanvraagLevensonderhoudOnvoldoendeInkomen? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("teLaagInkomen") val teLaagInkomen: RedenAanvraagLevensonderhoudTeLaagInkomen? = null,
+    @get:JsonProperty("TeLaagInkomen") val teLaagInkomen: RedenAanvraagLevensonderhoudTeLaagInkomen? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("uitkeringStopgezet") val uitkeringStopgezet: RedenAanvraagLevensonderhoudUitkeringStopgezet? = null,
+    @get:JsonProperty("UitkeringStopgezet") val uitkeringStopgezet: RedenAanvraagLevensonderhoudUitkeringStopgezet? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("verblijfstatus") val verblijfstatus: RedenAanvraagLevensonderhoudVerblijfstatus? = null,
+    @get:JsonProperty("Verblijfstatus") val verblijfstatus: RedenAanvraagLevensonderhoudVerblijfstatus? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("wijzigingGezin") val wijzigingGezin: RedenAanvraagLevensonderhoudWijzigingGezin? = null,
+    @get:JsonProperty("WijzigingGezin") val wijzigingGezin: RedenAanvraagLevensonderhoudWijzigingGezin? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("zelfstandige") val zelfstandige: RedenAanvraagLevensonderhoudZelfstandige? = null
+    @get:JsonProperty("Zelfstandige") val zelfstandige: RedenAanvraagLevensonderhoudZelfstandige? = null
 )
 

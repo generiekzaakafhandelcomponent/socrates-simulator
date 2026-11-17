@@ -16,16 +16,16 @@ data class Inkomstenverhouding(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("bekostiger", required = true) val bekostiger: Bekostiger,
+    @get:JsonProperty("Bekostiger", required = true) val bekostiger: Bekostiger,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "De datum waarop de inkomstenverhouding begon.")
-    @get:JsonProperty("periodeStartdatum", required = true) val periodeStartdatum: LocalDate,
+    @get:JsonProperty("PeriodeStartdatum", required = true) val periodeStartdatum: LocalDate,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty(
-        "primairInkomstencomponent",
+        "PrimairInkomstencomponent",
         required = true
     ) val primairInkomstencomponent: PrimairInkomstencomponent,
 
@@ -34,6 +34,6 @@ data class Inkomstenverhouding(
         example = "null",
         description = "De datum waarop de inkomstenverhouding eindigde.Als deze nog niet is geëindigd, is dit gegeven absent."
     )
-    @get:JsonProperty("periodeEinddatum") val periodeEinddatum: LocalDate? = null
+    @get:JsonProperty("PeriodeEinddatum") val periodeEinddatum: LocalDate? = null
 )
 

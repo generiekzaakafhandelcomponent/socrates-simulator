@@ -18,14 +18,14 @@ data class Betrokkene(
         required = true,
         description = "De feitelijke naam van de organisatorische eenheid.Bron: RGBZ2.0"
     )
-    @get:JsonProperty("naam", required = true) val naam: String,
+    @get:JsonProperty("Naam", required = true) val naam: String,
 
     @Schema(example = "null", description = "Een omschrijving van de organisatorische eenheid.Bron: RGBZ2.0")
-    @get:JsonProperty("omschrijving") val omschrijving: String? = null,
+    @get:JsonProperty("Omschrijving") val omschrijving: String? = null,
 
     @field:Valid
     @field:Size(min = 1)
     @Schema(example = "null", description = "")
-    @get:JsonProperty("rol") val rol: List<Rol>? = null
+    @get:JsonProperty("Rol") val rol: List<Rol>? = null
 )
 

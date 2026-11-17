@@ -14,14 +14,14 @@ data class Adreshouding(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("adres", required = true) val adres: Adres,
+    @get:JsonProperty("Adres", required = true) val adres: Adres,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("codeFunctieAdres", required = true) val codeFunctieAdres: AdreshoudingCodeFunctieAdres,
+    @get:JsonProperty("CodeFunctieAdres", required = true) val codeFunctieAdres: AdreshoudingCodeFunctieAdres,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("begindatum", required = true) val begindatum: java.time.LocalDate
+    @get:JsonProperty("Begindatum", required = true) val begindatum: java.time.LocalDate
 )
 

@@ -17,26 +17,26 @@ data class OuderKind(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieCoOuder", required = true) val indicatieCoOuder: OuderKindIndicatieCoOuder,
+    @get:JsonProperty("IndicatieCoOuder", required = true) val indicatieCoOuder: OuderKindIndicatieCoOuder,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieKinderbijslag", required = true) val indicatieKinderbijslag: JaNee,
+    @get:JsonProperty("IndicatieKinderbijslag", required = true) val indicatieKinderbijslag: JaNee,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieOnderhoudsplicht", required = true) val indicatieOnderhoudsplicht: JaNee,
+    @get:JsonProperty("IndicatieOnderhoudsplicht", required = true) val indicatieOnderhoudsplicht: JaNee,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieThuiswonend", required = true) val indicatieThuiswonend: JaNee,
+    @get:JsonProperty("IndicatieThuiswonend", required = true) val indicatieThuiswonend: JaNee,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("kind", required = true) val kind: Kind,
+    @get:JsonProperty("Kind", required = true) val kind: Kind,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("ouderKindRelatietype", required = true) val ouderKindRelatietype: OuderKindRelatietype
+    @get:JsonProperty("OuderKindRelatietype", required = true) val ouderKindRelatietype: OuderKindRelatietype
 )
 

@@ -15,18 +15,17 @@ data class AnderInkomen(
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty(
-        "soortInkomstencomponenttypeSpecifiekeGegevens",
+        "SoortInkomstencomponenttypeSpecifiekeGegevens",
         required = true
-    ) val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
+    ) override val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("categorie", required = true) val categorie: Categorie,
+    @get:JsonProperty("Categorie", required = true) val categorie: Categorie,
 
     @Schema(
         example = "null",
         description = "Beschrijving van de inkomsten uit ander inkomen en waarmee deze inkomsten gegenereerd worden."
     )
-    @get:JsonProperty("beschrijvingAnderInkomen") val beschrijvingAnderInkomen: String? = null
-)
-
+    @get:JsonProperty("BeschrijvingAnderInkomen") val beschrijvingAnderInkomen: String? = null
+) : InkomstencomponenttypeSpecifiekeGegevens
