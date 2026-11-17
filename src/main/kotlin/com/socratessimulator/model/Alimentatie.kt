@@ -14,15 +14,14 @@ data class Alimentatie(
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty(
-        "soortInkomstencomponenttypeSpecifiekeGegevens",
+        "SoortInkomstencomponenttypeSpecifiekeGegevens",
         required = true
-    ) val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
+    ) override val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty(
-        "inkomstensoortAlimentatie",
+        "InkomstensoortAlimentatie",
         required = true
     ) val inkomstensoortAlimentatie: InkomstensoortAlimentatie
-)
-
+) : InkomstencomponenttypeSpecifiekeGegevens

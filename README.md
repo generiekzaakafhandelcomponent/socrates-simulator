@@ -1,6 +1,8 @@
 # Socrates Simulator
 
-Socrates Simulator is a Spring Boot 3 / Kotlin application that acts as a stub server for the Wigo4it LO (Levensonderhoud) koppelvlak. It receives, validates, and simulates responses for API calls based on the OpenAPI 3.0 specification `oas-wigo4it-koppelvak-lo-2026.030.json`.
+Socrates Simulator is a Spring Boot 3 / Kotlin application that acts as a stub server for the Wigo4it LO (Levensonderhoud) koppelvlak. It receives, validates, and simulates responses for API calls based on the OpenAPI 3.0 specification `oas-wigo4it-koppelvak-lo-v2-2026-080.json` (koppelvlak v2, with BRP source lookup).
+
+> **v2 breaking changes:** request properties are now PascalCase (`Identificatie`, `LObehandeld`, `Huishouding`, …), and BRP person data (name, birth date, gender, nationality, verblijfstitel, A-nummer, geheimhouding) is no longer sent — `Persoon`, `Kind`, `Bewoner` and `BekostigerPersoon` only carry a `Burgerservicenummer`. `RedenAanvraagLevensonderhoud` is optional, `Partner.IngangsdatumRelatie` is only required when `PartnerRelatietype` is `4`, and only `application/json` is accepted. Responses are unchanged (camelCase).
 
 ## Features
 
@@ -35,30 +37,22 @@ Accepts a `ZaakLOBehandeld` payload and returns a `ResponseLOBehandeld`.
 **Request body:**
 ```json
 {
-    "identificatie": "Z-123",
-    "loBehandeld": {
-        "aanvraagdatum": "2023-01-01",
-        "aanvraagid": "550e8400-e29b-41d4-a716-446655440000",
-        "codeOntvangendeGemeente": "0307",
-        "huishouding": {
-            "aanvrager": {
-                "burgerservicenummer": "123456782",
-                "geboortedatum": "1980-01-01",
-                "geslachtsaanduiding": "1",
-                "geslachtsnaamstam": "Jansen",
-                "voorlettersAanschrijving": "J.",
-                "naamgebruik": "1",
-                "codeBrpGegevensGeheim": "0",
-                "nationaliteit": ["0"]
+    "Identificatie": "Z-123",
+    "LObehandeld": {
+        "Aanvraagdatum": "2023-01-01",
+        "Aanvraagid": "550e8400-e29b-41d4-a716-446655440000",
+        "CodeOntvangendeGemeente": "0307",
+        "Huishouding": {
+            "Aanvrager": {
+                "Burgerservicenummer": "123456782"
             },
-            "leefsituatie": "3"
+            "Leefsituatie": "3"
         },
-        "ingangBijstandsuitkering": {
-            "datumMeldingBijGemeente": "2023-01-01",
-            "datumIngang": "2023-01-01"
+        "IngangBijstandsuitkering": {
+            "DatumMeldingBijGemeente": "2023-01-01"
         },
-        "redenAanvraagLevensonderhoud": {
-            "onvoldoendeInkomen": "1"
+        "RedenAanvraagLevensonderhoud": {
+            "OnvoldoendeInkomen": "1"
         }
     }
 }
@@ -89,7 +83,7 @@ Accepts a `ZaakLOBehandeld` payload and returns a `ResponseLOBehandeld`.
 
 ## BSN Simulation
 
-The simulator uses the `burgerservicenummer` of the `aanvrager` to route requests to a pre-configured response. This allows consumers to test specific HTTP error scenarios without modifying any request fields other than the BSN.
+The simulator uses the `Burgerservicenummer` of the `Aanvrager` to route requests to a pre-configured response. This allows consumers to test specific HTTP error scenarios without modifying any request fields other than the BSN.
 
 All test BSNs pass the elfproef checksum and are in the `999999xxx` range reserved for test purposes.
 
@@ -103,12 +97,12 @@ All test BSNs pass the elfproef checksum and are in the `999999xxx` range reserv
 **Example — trigger a 422:**
 ```json
 {
-    "identificatie": "Z-999",
-    "loBehandeld": {
+    "Identificatie": "Z-999",
+    "LObehandeld": {
         ...
-        "huishouding": {
-            "aanvrager": {
-                "burgerservicenummer": "999999424",
+        "Huishouding": {
+            "Aanvrager": {
+                "Burgerservicenummer": "999999424",
                 ...
             }
         }
@@ -154,6 +148,44 @@ Swagger UI is available at:
 ```
 http://localhost:5030/swagger-ui.html
 ```
+
+## Testing
+
+### Automated tests
+
+```bash
+./gradlew test
+```
+
+Covers v2 request handling (PascalCase payloads, polymorphic `Adres` / `Bekostiger` / `InkomstencomponenttypeSpecifiekeGegevens`), the `Partner` relatietype-4 rule, the BSN simulation scenarios, validation errors, and rejection of v1 camelCase payloads.
+
+### Manual test with curl
+
+Start the application (`./gradlew bootRun` or `docker compose up --build`), then:
+
+```bash
+curl -X POST http://localhost:5030/api/v2/LOBehandeld \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "Identificatie": "Z-123",
+    "LObehandeld": {
+      "Aanvraagdatum": "2026-11-01",
+      "Aanvraagid": "550e8400-e29b-41d4-a716-446655440000",
+      "CodeOntvangendeGemeente": "0307",
+      "Huishouding": {
+        "Aanvrager": { "Burgerservicenummer": "123456782" },
+        "Leefsituatie": "3"
+      },
+      "IngangBijstandsuitkering": { "DatumMeldingBijGemeente": "2026-11-01" }
+    }
+  }'
+```
+
+Expected: `200 OK` with `berichtId: "Z-123"`. Replace the BSN with one of the [simulation BSNs](#bsn-simulation) (`999999400`, `999999424`, `999999503`) to get the corresponding error response. A v1-style camelCase payload returns `422` with `foutcode: "MALFORMED_JSON"`.
+
+### Swagger UI
+
+Open `http://localhost:5030/swagger-ui.html`, expand `POST /api/v{version}/LOBehandeld`, click **Try it out**, set `version` to `2` and paste the request body above.
 
 ## Tech Stack
 

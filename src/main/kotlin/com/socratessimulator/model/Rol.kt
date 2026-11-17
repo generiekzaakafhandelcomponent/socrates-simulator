@@ -10,6 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Rol(
 
     @Schema(example = "null", required = true, description = "Algemeen gehanteerde benaming van de aard van de ROL")
-    @get:JsonProperty("rolomschrijving", required = true) val rolomschrijving: String
+    @get:JsonProperty("Rolomschrijving", required = true) val rolomschrijving: String
 )
 

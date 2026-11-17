@@ -13,10 +13,10 @@ data class Bewindvoerder(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("rolOrganisatie", required = true) val rolOrganisatie: BewindvoerderRolOrganisatie,
+    @get:JsonProperty("RolOrganisatie", required = true) val rolOrganisatie: BewindvoerderRolOrganisatie,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("vestiging", required = true) val vestiging: Vestiging
+    @get:JsonProperty("Vestiging", required = true) val vestiging: Vestiging
 )
 

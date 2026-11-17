@@ -5,63 +5,23 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * 
- * @param soortInkomstencomponenttypeSpecifiekeGegevens
- * @param indicatieLoonheffingskorting
- * @param indicatieReserveringVT
- * @param inkomstensoortAlimentatie
- * @param inkomstensoortPensioen
- * @param categorie
- * @param indicatieBeslagOpUitkering
- * @param inkomstensoortUitkering
- * @param beschrijvingAnderInkomen Beschrijving van de inkomsten uit ander inkomen en waarmee deze inkomsten gegenereerd worden.
+ * Polymorf type; het discriminatorveld SoortInkomstencomponenttypeSpecifiekeGegevens bepaalt het subtype:
+ * 1 = BetaaldWerk, 2 = Uitkering, 3 = Alimentatie, 4 = Pensioen, 5 = AnderInkomen
  */
-
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "soortInkomstencomponenttypeSpecifiekeGegevens",
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    property = "SoortInkomstencomponenttypeSpecifiekeGegevens",
     visible = true
 )
 @JsonSubTypes(
-    JsonSubTypes.Type(value = Alimentatie::class, name = "Alimentatie"),
-    JsonSubTypes.Type(value = AnderInkomen::class, name = "AnderInkomen"),
-    JsonSubTypes.Type(value = BetaaldWerk::class, name = "BetaaldWerk"),
-    JsonSubTypes.Type(value = Pensioen::class, name = "Pensioen"),
-    JsonSubTypes.Type(value = Uitkering::class, name = "Uitkering")
+    JsonSubTypes.Type(value = BetaaldWerk::class, name = "1"),
+    JsonSubTypes.Type(value = Uitkering::class, name = "2"),
+    JsonSubTypes.Type(value = Alimentatie::class, name = "3"),
+    JsonSubTypes.Type(value = Pensioen::class, name = "4"),
+    JsonSubTypes.Type(value = AnderInkomen::class, name = "5")
 )
-
+@Schema(oneOf = [BetaaldWerk::class, Uitkering::class, Alimentatie::class, Pensioen::class, AnderInkomen::class])
 interface InkomstencomponenttypeSpecifiekeGegevens {
-    @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
     val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens
-
-    @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
-    val indicatieLoonheffingskorting: JaNee
-
-    @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
-    val indicatieReserveringVT: JaNee
-
-    @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
-    val inkomstensoortAlimentatie: InkomstensoortAlimentatie
-
-    @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
-    val inkomstensoortPensioen: InkomstensoortPensioen
-
-    @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
-    val categorie: Categorie
-
-    @get:Schema(example = "null", description = "")
-    val indicatieBeslagOpUitkering: JaNee?
-
-    @get:Schema(example = "null", description = "")
-    val inkomstensoortUitkering: UitkeringInkomstensoortUitkering?
-
-    @get:Schema(
-        example = "null",
-        description = "Beschrijving van de inkomsten uit ander inkomen en waarmee deze inkomsten gegenereerd worden."
-    )
-    val beschrijvingAnderInkomen: String?
-
-
 }
-

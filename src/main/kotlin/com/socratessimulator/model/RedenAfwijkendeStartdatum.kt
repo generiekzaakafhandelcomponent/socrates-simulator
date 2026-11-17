@@ -16,21 +16,21 @@ data class RedenAfwijkendeStartdatum(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("redenAfwijkingAanwezig", required = true) val redenAfwijkingAanwezig: JaNee,
+    @get:JsonProperty("RedenAfwijkingAanwezig", required = true) val redenAfwijkingAanwezig: JaNee,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("aanvraagdatumDigid") val aanvraagdatumDigid: java.time.LocalDate? = null,
+    @get:JsonProperty("AanvraagdatumDigid") val aanvraagdatumDigid: java.time.LocalDate? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("ontvangstdatumBeslissingInstantie") val ontvangstdatumBeslissingInstantie: java.time.LocalDate? = null,
+    @get:JsonProperty("OntvangstdatumBeslissingInstantie") val ontvangstdatumBeslissingInstantie: java.time.LocalDate? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("redenafwijkendestartdatumtype") val redenafwijkendestartdatumtype: Redenafwijkendestartdatumtype? = null,
+    @get:JsonProperty("Redenafwijkendestartdatumtype") val redenafwijkendestartdatumtype: Redenafwijkendestartdatumtype? = null,
 
     @Schema(example = "null", description = "")
-    @get:JsonProperty("specificatieBijzondereRedenLaterIngaanStartdatumAanvraag") val specificatieBijzondereRedenLaterIngaanStartdatumAanvraag: String? = null
+    @get:JsonProperty("SpecificatieBijzondereRedenLaterIngaanStartdatumAanvraag") val specificatieBijzondereRedenLaterIngaanStartdatumAanvraag: String? = null
 )
 

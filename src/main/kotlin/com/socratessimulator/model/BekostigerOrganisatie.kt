@@ -15,7 +15,7 @@ data class BekostigerOrganisatie(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("soortBekostiger", required = true) val soortBekostiger: SoortBekostiger,
+    @get:JsonProperty("SoortBekostiger", required = true) override val soortBekostiger: SoortBekostiger,
 
     @field:Pattern(regexp = "^\\d{8,9}L\\d{2}$")
     @Schema(
@@ -23,7 +23,7 @@ data class BekostigerOrganisatie(
         required = true,
         description = "Het loonheffingsnummer op de loonstrook van de persoon.Bron: GBI-Werkgroep Ontologie Inkomen"
     )
-    @get:JsonProperty("loonheffingsnummer", required = true) val loonheffingsnummer: String,
+    @get:JsonProperty("Loonheffingsnummer", required = true) val loonheffingsnummer: String,
 
     @field:Pattern(regexp = "^[\\p{L}\\p{M}\\-'\\.,\\s]{1,40}$")
     @Schema(
@@ -31,6 +31,5 @@ data class BekostigerOrganisatie(
         required = true,
         description = "De feitelijke naam van de organisatorische eenheid.Bron: RGBZ2.0"
     )
-    @get:JsonProperty("naam", required = true) val naam: String
-)
-
+    @get:JsonProperty("Naam", required = true) val naam: String
+) : Bekostiger

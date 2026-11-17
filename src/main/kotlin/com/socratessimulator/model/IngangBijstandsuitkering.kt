@@ -19,18 +19,18 @@ data class IngangBijstandsuitkering(
         required = true,
         description = "Indien er direct een aanvraag is gedaan dan is de melddatum gelijk aan datum waarop aanvraag is ontvangen."
     )
-    @get:JsonProperty("datumMeldingBijGemeente", required = true) val datumMeldingBijGemeente: java.time.LocalDate,
+    @get:JsonProperty("DatumMeldingBijGemeente", required = true) val datumMeldingBijGemeente: java.time.LocalDate,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("afwijkendeIngangsdatum") val afwijkendeIngangsdatum: JaNee? = null,
+    @get:JsonProperty("AfwijkendeIngangsdatum") val afwijkendeIngangsdatum: JaNee? = null,
 
     @field:Valid
     @Schema(example = "null", description = "Gewenste datum waarop uitkering ingaat")
-    @get:JsonProperty("gewensteStartdatumUitkering") val gewensteStartdatumUitkering: java.time.LocalDate? = null,
+    @get:JsonProperty("GewensteStartdatumUitkering") val gewensteStartdatumUitkering: java.time.LocalDate? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("redenAfwijkendestartdatum") val redenAfwijkendestartdatum: RedenAfwijkendeStartdatum? = null
+    @get:JsonProperty("RedenAfwijkendestartdatum") val redenAfwijkendestartdatum: RedenAfwijkendeStartdatum? = null
 )
 

@@ -12,6 +12,6 @@ data class Besluit(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("dienst", required = true) val dienst: Dienst
+    @get:JsonProperty("Dienst", required = true) val dienst: Dienst
 )
 

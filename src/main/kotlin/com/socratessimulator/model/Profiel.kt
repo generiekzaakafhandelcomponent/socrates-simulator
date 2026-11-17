@@ -13,10 +13,10 @@ data class Profiel(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("inkomstenverhoudingen") val inkomstenverhoudingen: List<Inkomstenverhouding>? = null,
+    @get:JsonProperty("Inkomstenverhoudingen") val inkomstenverhoudingen: List<Inkomstenverhouding>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("indNietRechthebbend") val indNietRechthebbend: JaNee? = null
+    @get:JsonProperty("IndNietRechthebbend") val indNietRechthebbend: JaNee? = null
 )
 

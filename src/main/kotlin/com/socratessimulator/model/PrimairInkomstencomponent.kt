@@ -21,38 +21,38 @@ data class PrimairInkomstencomponent(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("brutoNetto", required = true) val brutoNetto: PrimairInkomstencomponentBrutoNetto,
+    @get:JsonProperty("BrutoNetto", required = true) val brutoNetto: PrimairInkomstencomponentBrutoNetto,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "De startdatum van de periode waarop het geboekte bedrag in dit inkomstencomponent betrekking heeft.")
-    @get:JsonProperty("periodeStartdatum", required = true) val periodeStartdatum: java.time.LocalDate,
+    @get:JsonProperty("PeriodeStartdatum", required = true) val periodeStartdatum: java.time.LocalDate,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("primairInkomstencomponenttype", required = true) val primairInkomstencomponenttype: PrimairInkomstencomponenttype,
+    @get:JsonProperty("PrimairInkomstencomponenttype", required = true) val primairInkomstencomponenttype: PrimairInkomstencomponenttype,
 
     @field:Pattern(regexp="^-?[0-9]+((;|,|\\\\.)[0-9]{2}|)$")
     @Schema(example = "null", description = "Het geldbedrag waarop de boeking betrekking heeft geldig voor de periode in dit inkomstencomponent.")
-    @get:JsonProperty("inkomsten") val inkomsten: String? = null,
+    @get:JsonProperty("Inkomsten") val inkomsten: String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("inkomstencomponenttypeSpecifiekeGegevens") val inkomstencomponenttypeSpecifiekeGegevens: InkomstencomponenttypeSpecifiekeGegevens? = null,
+    @get:JsonProperty("InkomstencomponenttypeSpecifiekeGegevens") val inkomstencomponenttypeSpecifiekeGegevens: InkomstencomponenttypeSpecifiekeGegevens? = null,
 
     @field:Valid
     @Schema(example = "null", description = "De einddatum van de periode waarop het geboekte bedrag in dit inkomstencomponent betrekking heeft.")
-    @get:JsonProperty("periodeEinddatum") val periodeEinddatum: java.time.LocalDate? = null,
+    @get:JsonProperty("PeriodeEinddatum") val periodeEinddatum: java.time.LocalDate? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("periodiciteitUitbetaling") val periodiciteitUitbetaling: PrimairInkomstencomponentPeriodiciteitUitbetaling? = null,
+    @get:JsonProperty("PeriodiciteitUitbetaling") val periodiciteitUitbetaling: PrimairInkomstencomponentPeriodiciteitUitbetaling? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("secundairInkomstencomponent") val secundairInkomstencomponent: List<SecundairInkomstencomponent>? = null,
+    @get:JsonProperty("SecundairInkomstencomponent") val secundairInkomstencomponent: List<SecundairInkomstencomponent>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("kleurLoonbelastingtabel") val kleurLoonbelastingtabel: KleurInkomen? = null
+    @get:JsonProperty("KleurLoonbelastingtabel") val kleurLoonbelastingtabel: KleurInkomen? = null
 )
 

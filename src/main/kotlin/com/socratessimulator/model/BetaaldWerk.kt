@@ -15,16 +15,15 @@ data class BetaaldWerk(
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty(
-        "soortInkomstencomponenttypeSpecifiekeGegevens",
+        "SoortInkomstencomponenttypeSpecifiekeGegevens",
         required = true
-    ) val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
+    ) override val soortInkomstencomponenttypeSpecifiekeGegevens: SoortInkomstencomponenttypeSpecifiekeGegevens,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieLoonheffingskorting", required = true) val indicatieLoonheffingskorting: JaNee,
+    @get:JsonProperty("IndicatieLoonheffingskorting", required = true) val indicatieLoonheffingskorting: JaNee,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("indicatieReserveringVT", required = true) val indicatieReserveringVT: JaNee
-)
-
+    @get:JsonProperty("IndicatieReserveringVT", required = true) val indicatieReserveringVT: JaNee
+) : InkomstencomponenttypeSpecifiekeGegevens
